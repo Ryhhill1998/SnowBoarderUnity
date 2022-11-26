@@ -24,7 +24,7 @@ public class CrashDetector : MonoBehaviour
     {
         if (other.gameObject.tag == "Ground" && playerHead.IsTouching(other.collider)) 
         {
-            crashEffect.Play();
+            crashEffect.Play(); 
             Invoke("ReloadScene", delay);
         }    
     }
