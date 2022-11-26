@@ -5,11 +5,13 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] float torqueMagnitude = 1f;
-    [SerializeField] float normalSpeed = 20;
-    [SerializeField] float boostedSpeed = 50;
+    [SerializeField] float normalSpeed = 30f;
+    [SerializeField] float boostedSpeed = 50f;
 
     Rigidbody2D rb2d;
-    SurfaceEffector2D surfaceEffector2D;
+    public SurfaceEffector2D surfaceEffector2D;
+
+    bool canMove = true;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // check if controls have been disabled and prevent movement if so
+        if (!canMove) return;
+
         RotatePlayer();
         RespondToBoost();
     }
@@ -48,5 +53,10 @@ public class PlayerController : MonoBehaviour
         {
             surfaceEffector2D.speed = normalSpeed;
         }
+    }
+
+    public void DisableControls()
+    {
+        canMove = false;
     }
 }
